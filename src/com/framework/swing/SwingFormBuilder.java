@@ -78,7 +78,8 @@ public class SwingFormBuilder {
         for (Field field : ReflectionUtils.getMappedFields(clazz)) {
             if (field.isAnnotationPresent(Id.class) && ReflectionUtils.isIdAutoIncrement(field))
                 continue;
-
+            
+            if (field.isAnnotationPresent(Hidden.class)) continue;
             // CHANGEMENT 2 : Détermination du nom du label via @FormField
             String labelName = field.getName().substring(0, 1).toUpperCase() + field.getName().substring(1);
             if (field.isAnnotationPresent(FormField.class)) {
